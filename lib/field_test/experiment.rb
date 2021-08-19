@@ -120,7 +120,7 @@ module FieldTest
             "COALESCE(participant_type, '') || ':' || participant_id"
           end
 
-        converted = events.merge(relation).where(field_test_events: {name: goal}).distinct.count(column)
+        converted = events.merge(relation).where(field_test_events: {name: goal}).distinct(column).count
 
         (participated.keys + converted.keys).uniq.each do |variant|
           data[[variant, true]] = converted[variant].to_i
